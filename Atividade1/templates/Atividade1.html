@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block  'head' %}
+    <link rel="stylesheet" href="{% static 'Atividade1/css/Atividade1.css' %}">
+{% endblock  %}
+
+{% block 'title' %}
+DNA
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md card-dashboard">
+                <p class="text-card">Bases Nitrogenadas</p>
+            </div>
+        </div>
+            <div>
+                <br>
+                <form action="{% url 'Atividade1' %}" method="POST">
+                    <div class="col-md">
+                        <p>Informe a sequência de DNA:</p>
+                        <input type="text" class="form-control" placeholder="Ex: A, G, C e T" name="DNA">
+                    </div>
+                    <br>
+                    <input type="submit" value="Enviar" class="btn-principal">
+                    <br>
+                    <br>
+                    {% if num_Adenina%}
+                    {%endif%}
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                        <div class="col-md">
+                            <ul>
+                                <li><strong>Adenina:</strong> {{ num_Adenina }}</li>
+                                <li><strong>Guanina:</strong> {{ num_Guanina }}</li>
+                                <li><strong>Citosina:</strong> {{ num_Citosina }}</li>
+                                <li><strong>Timina:</strong> {{ num_Timina }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md">
+                            <ul>
+                                <li><strong>Fita inserida:</strong> {{ string }}</li>
+                                <li><strong>Fita gerada:</strong> {{ nova_string }}</li>
+                            </ul>
+                    {% endif %}
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        {% endblock  %}
+        
